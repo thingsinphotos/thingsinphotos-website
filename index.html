@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ThingsInPhotos | Product & Macro Photography</title>
-  <meta name="description" content="Product, macro and creative photography. A closer look at the details that make ordinary things extraordinary.">
+  <title>ThingsInPhotos | Product Photography in Sussex</title>
+  <meta name="description" content="Product photography in Sussex for businesses, makers and independent brands. Local shoots or products sent by post. Get in touch with ThingsInPhotos.">
 
   <style>
     :root {
@@ -46,7 +46,7 @@
     }
 
     header {
-      padding: 28px 0;
+      padding: 22px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -58,7 +58,7 @@
     }
 
     .logo {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: -1px;
     }
@@ -69,7 +69,8 @@
 
     nav {
       display: flex;
-      gap: 28px;
+      align-items: center;
+      gap: 26px;
     }
 
     nav a {
@@ -82,13 +83,13 @@
       color: var(--accent);
     }
 
-    .hero {
-      min-height: 590px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 60px;
-      padding: 75px 0;
+    nav .nav-contact {
+      color: var(--accent);
+    }
+
+    .intro {
+      padding: 76px 0 84px;
+      border-top: 0;
     }
 
     .eyebrow {
@@ -100,18 +101,19 @@
     }
 
     h1 {
-      margin: 24px 0;
-      font-size: clamp(48px, 6vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -5px;
+      max-width: 900px;
+      margin: 20px 0 24px;
+      font-size: clamp(38px, 5.5vw, 70px);
+      line-height: 1.06;
+      letter-spacing: -3px;
     }
 
     h1 span {
       color: var(--accent);
     }
 
-    .hero-copy {
-      max-width: 470px;
+    .intro-copy {
+      max-width: 680px;
       color: var(--muted);
       font-size: 17px;
     }
@@ -120,7 +122,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 32px;
+      margin-top: 28px;
     }
 
     .button {
@@ -145,53 +147,8 @@
       color: #111;
     }
 
-    .hero-visual {
-      min-height: 390px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse at 55% 45%, #65543a 0%, #29251e 35%, #181817 72%);
-      border: 1px solid var(--border);
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      border: 1px solid #d9b77b66;
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 28px #d9b77b12,
-        0 0 0 58px #d9b77b09;
-    }
-
-    .lens {
-      position: relative;
-      z-index: 1;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 9px solid #292825;
-      background:
-        radial-gradient(circle at 35% 30%, #747a77, #222827 24%, #080909 57%, #625440 60%, #171716 70%);
-      box-shadow: 0 20px 50px #0009;
-    }
-
-    .visual-caption {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: #e5d5b5;
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
     section {
-      padding: 100px 0;
+      padding: 82px 0;
       border-top: 1px solid var(--border);
     }
 
@@ -203,7 +160,7 @@
     }
 
     .section-intro {
-      max-width: 600px;
+      max-width: 650px;
       color: var(--muted);
     }
 
@@ -279,6 +236,20 @@
       margin-top: 18px;
     }
 
+    .service-note {
+      margin-top: 26px;
+      padding: 22px 24px;
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      color: var(--muted);
+    }
+
+    .service-note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
     .contact-panel {
       display: flex;
       justify-content: space-between;
@@ -308,28 +279,24 @@
       .navigation {
         align-items: flex-start;
         flex-direction: column;
+        gap: 14px;
       }
 
       nav {
-        gap: 20px;
+        flex-wrap: wrap;
+        gap: 18px;
       }
 
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 38px;
-        padding: 65px 0;
+      .intro {
+        padding: 56px 0 64px;
       }
 
       h1 {
-        letter-spacing: -3px;
-      }
-
-      .hero-visual {
-        min-height: 300px;
+        letter-spacing: -2px;
       }
 
       section {
-        padding: 70px 0;
+        padding: 64px 0;
       }
 
       .portfolio-grid,
@@ -355,35 +322,32 @@
       <a class="logo" href="#">THINGS<span>IN</span>PHOTOS</a>
 
       <nav aria-label="Main navigation">
-        <a href="#work">The Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#work">Portfolio</a>
+        <a href="#about">Services</a>
+        <a class="nav-contact" href="#contact">Get in touch</a>
       </nav>
     </div>
   </header>
 
   <main>
     <div class="container">
-      <section class="hero" style="border-top: 0;">
-        <div>
-          <div class="eyebrow">Product · Macro · Creative</div>
+      <section class="intro">
+        <div class="eyebrow">Product photography · Sussex · UK postage</div>
 
-          <h1>Look closer.<br><span>See more.</span></h1>
+        <h1>Photos of things that are mine.<br>
+          <span>Hire me to take photos of things that are yours.</span>
+        </h1>
 
-          <p class="hero-copy">
-            Small details deserve a big stage. Photography that explores
-            texture, character and the things you might otherwise overlook.
-          </p>
+        <p class="intro-copy">
+          I photograph products, objects and the details that make them
+          interesting. Working with businesses, independent brands and
+          makers across Sussex, I can photograph your products locally
+          or you can send them to me by post.
+        </p>
 
-          <div class="buttons">
-            <a class="button primary" href="#work">Explore the work</a>
-            <a class="button" href="#contact">Get in touch</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Abstract camera lens illustration">
-          <div class="lens"></div>
-          <div class="visual-caption">A DIFFERENT PERSPECTIVE</div>
+        <div class="buttons">
+          <a class="button primary" href="#work">View the photography</a>
+          <a class="button" href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry">Discuss a project</a>
         </div>
       </section>
 
@@ -392,8 +356,9 @@
         <h2>The details make it.</h2>
 
         <p class="section-intro">
-          From beautifully considered products to unexpected close-ups.
-          A closer look can change the way you see something.
+          Product photography that shows off the finish, texture and
+          character of what you make or sell. Images for websites,
+          online shops, social media and more.
         </p>
 
         <div class="portfolio-grid">
@@ -414,30 +379,37 @@
         </div>
 
         <p class="placeholder-note">
-          Portfolio categories are placeholders for your own photographs.
-          We'll replace these panels with your actual work next.
+          Photography examples coming soon.
         </p>
       </section>
 
       <section id="about">
         <div class="about-grid">
           <div>
-            <div class="eyebrow">Behind the lens</div>
-            <h2>Things worth looking at.</h2>
+            <div class="eyebrow">What I do</div>
+            <h2>Good products deserve good photos.</h2>
           </div>
 
           <div class="about-copy">
             <p>
-              ThingsInPhotos is about seeing everyday objects differently.
-              Through considered lighting, composition and close-up
-              photography, the small stuff becomes the main event.
+              Whether you're selling online, launching a new product
+              or building your brand, good photography helps people
+              understand what makes your product worth a closer look.
             </p>
 
             <p>
-              Whether it's a product, a fascinating texture or something
-              with a bit of personality, the aim is to create images that
-              make people stop and look twice.
+              I create considered product and macro photography, from
+              clean, detailed shots to more creative images that bring
+              out a product's personality. The aim is simple: make
+              people stop scrolling and take notice.
             </p>
+
+            <div class="service-note">
+              <strong>Based in Sussex. Open to projects further afield.</strong>
+              Local businesses can arrange a shoot in Sussex. If you're
+              elsewhere in the UK, get in touch about posting your
+              products to me for photography.
+            </div>
           </div>
         </div>
       </section>
@@ -446,20 +418,18 @@
         <div class="contact-panel">
           <div>
             <div class="eyebrow">Got something in mind?</div>
-            <h2>Let's make it stand out.</h2>
+            <h2>Let's photograph it.</h2>
             <p class="section-intro">
-              Have a product or an idea you'd like photographed?
-              Get in touch.
+              Tell me what you make, sell or want photographed.
+              We can discuss your ideas, requirements and budget.
             </p>
           </div>
 
           <a
             class="button primary"
-            href="https://www.instagram.com/thingsinphotos/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry"
           >
-            Find me on Instagram
+            Get in touch
           </a>
         </div>
       </section>
@@ -468,7 +438,8 @@
 
   <footer class="container">
     <span>© <span id="year"></span> ThingsInPhotos</span>
-    <span>Product, macro & creative photography</span>
+    <span>Product photography in Sussex and across the UK</span>
+    <a href="mailto:thingsinphotos@gmail.com">thingsinphotos@gmail.com</a>
   </footer>
 
   <script>

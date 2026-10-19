@@ -4,11 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>All Photos | ThingsInPhotos</title>
   <meta name="description" content="Browse the product, macro and creative photography portfolio at ThingsInPhotos.">
+
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -16,6 +22,10 @@
       background: #111;
       color: #f5f5f5;
       font-family: Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
     }
 
     header {
@@ -33,16 +43,23 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     .logo span {
       color: #c6a15b;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
     nav a {
       color: #f5f5f5;
       text-decoration: none;
-      margin-left: 20px;
       font-size: 14px;
     }
 
@@ -64,7 +81,13 @@
     .intro {
       color: #aaa;
       margin: 0 0 35px;
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+
+    .intro a {
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .gallery {
@@ -86,6 +109,95 @@
       opacity: 0.8;
     }
 
+    /* Contact tile */
+
+    #contact {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 5% 65px;
+      scroll-margin-top: 20px;
+    }
+
+    .contact-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      padding: clamp(28px, 5vw, 55px);
+      background: #1b1b1b;
+      border: 1px solid #383838;
+    }
+
+    .eyebrow {
+      margin-bottom: 14px;
+      color: #c6a15b;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .contact-panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      max-width: 600px;
+      margin: 0;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 24px;
+      border: 1px solid #c6a15b;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .button.primary {
+      background: #c6a15b;
+      color: #111;
+    }
+
+    .button.primary:hover {
+      background: #dfbd7d;
+      border-color: #dfbd7d;
+    }
+
+    /* Footer */
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px 25px;
+      padding: 28px 5%;
+      border-top: 1px solid #333;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: #c6a15b;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Full-size image viewer */
+
     .lightbox {
       display: none;
       position: fixed;
@@ -102,6 +214,7 @@
     }
 
     .lightbox img {
+      display: block;
       max-width: 100%;
       max-height: 100%;
       width: auto;
@@ -146,6 +259,11 @@
       .gallery img {
         height: 220px;
       }
+
+      .contact-panel {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 600px) {
@@ -154,8 +272,8 @@
         flex-direction: column;
       }
 
-      nav a {
-        margin: 0 16px 0 0;
+      nav {
+        gap: 18px;
       }
 
       main {
@@ -169,6 +287,19 @@
 
       .gallery img {
         height: 170px;
+      }
+
+      #contact {
+        padding-bottom: 40px;
+      }
+
+      .contact-panel {
+        padding: 26px 22px;
+      }
+
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .lightbox {
@@ -189,25 +320,31 @@
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <a class="logo" href="index.html">THINGS<span>IN</span>PHOTOS</a>
-    <nav>
+
+    <nav aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="photos.html">All Photos</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main> 
+  <main>
     <h1>All Photos</h1>
-    <p class="intro">A closer look at the things I've photographed. Click to see full image.</p>
+
+    <p class="intro">
+      A closer look at the things I've photographed. Click to see full image.
+    </p>
 
     <div class="gallery">
       <img src="images/dpt%204.jpg" alt="Product photography">
       <img src="images/gizmo.jpg" alt="Macro photography">
       <img src="images/bf2.jpg" alt="Creative photography">
-           <img src="images/JD1.jpg" alt="Creative photography">
+      <img src="images/JD1.jpg" alt="Creative photography">
       <img src="images/JD2.jpg" alt="Creative photography">
       <img src="images/RA1.jpg" alt="Creative photography">
       <img src="images/RA2.jpg" alt="Creative photography">
@@ -223,124 +360,119 @@
       <img src="images/bm2.jpg" alt="Creative photography">
       <img src="images/bm3.jpg" alt="Creative photography">
       <img src="images/bm4.jpg" alt="Creative photography">
-            <img src="images/bm5.jpg" alt="Creative photography">
-            <img src="images/bm6.jpg" alt="Creative photography">
-            <img src="images/bridge.jpg" alt="Creative photography">
-            <img src="images/ch2.jpg" alt="Creative photography">
-            <img src="images/ch3.jpg" alt="Creative photography">
-            <img src="images/ch4.jpg" alt="Creative photography">
-            <img src="images/ch5.jpg" alt="Creative photography">
-            <img src="images/ch6.jpg" alt="Creative photography">
-            <img src="images/chess1.jpg" alt="Creative photography">
-            <img src="images/ct1.jpg" alt="Creative photography">
-            <img src="images/ct2.jpg" alt="Creative photography">
-            <img src="images/ct3.jpg" alt="Creative photography">
-            <img src="images/ct4.jpg" alt="Creative photography">
-            <img src="images/dime 1.jpg" alt="Creative photography">
-            <img src="images/dime 2.jpg" alt="Creative photography">
-            <img src="images/dipinto 1.jpg" alt="Creative photography">
-            <img src="images/dipinto 2.jpg" alt="Creative photography">
-            <img src="images/dipinot 3.jpg" alt="Creative photography">
-            <img src="images/dipinto 4.jpg" alt="Creative photography">
-                  <img src="images/dollar bill.jpg" alt="Creative photography">
-                  <img src="images/dpt 1.jpg" alt="Creative photography">
-                  <img src="images/dpt 2.jpg" alt="Creative photography">
-                  <img src="images/dpt 3.jpg" alt="Creative photography">
-                  <img src="images/dpt 4.jpg" alt="Creative photography">
-                  <img src="images/dpt 5.jpg" alt="Creative photography">
-                  <img src="images/dpt 6.jpg" alt="Creative photography">
-                  <img src="images/DPT.jpg" alt="Creative photography">
-         <img src="images/ewok.jpg" alt="Creative photography">
-         <img src="images/frodo.jpg" alt="Creative photography">
-         <img src="images/g1.jpg" alt="Creative photography">
-         <img src="images/g2.jpg" alt="Creative photography">
-         <img src="images/g3.jpg" alt="Creative photography">
-         <img src="images/g4.jpg" alt="Creative photography">
-         <img src="images/gizmo.jpg" alt="Creative photography">
-         <img src="images/l1.jpg" alt="Creative photography">
-         <img src="images/l2.jpg" alt="Creative photography">
-         <img src="images/l3.jpg" alt="Creative photography">
-         <img src="images/l4.jpg" alt="Creative photography">
-         <img src="images/muff 1.jpg" alt="Creative photography">
-         <img src="images/muff 2.jpg" alt="Creative photography">
-         <img src="images/muff 3.jpg" alt="Creative photography">
-         <img src="images/muff 4.jpg" alt="Creative photography">
-         <img src="images/orange.jpg" alt="Creative photography">
-         <img src="images/photo 1.jpg" alt="Creative photography">
-         <img src="images/photo 2.jpg" alt="Creative photography">
-         <img src="images/photo 3.jpg" alt="Creative photography">
-         <img src="images/photo 4.jpg" alt="Creative photography">
-         <img src="images/photo 5.jpg" alt="Creative photography">
-         <img src="images/ray ban.jpg" alt="Creative photography">
-         <img src="images/ray2.jpg" alt="Creative photography">
-         <img src="images/sr1.jpg" alt="Creative photography">
-         <img src="images/sr2.jpg" alt="Creative photography">
-         <img src="images/sr3.jpg" alt="Creative photography">
-         <img src="images/sr4.jpg" alt="Creative photography">
-         <img src="images/sr5.jpg" alt="Creative photography">
-         <img src="images/sr6.jpg" alt="Creative photography">
-        <img src="images/sr7.jpg" alt="Creative photography">
-        <img src="images/sray.jpg" alt="Creative photography">
-        <img src="images/sw1.jpg" alt="Creative photography">
-        <img src="images/sw2.jpg" alt="Creative photography">
-        <img src="images/sw3.jpg" alt="Creative photography">
-        <img src="images/sw4.jpg" alt="Creative photography">
-        <img src="images/sw5.jpg" alt="Creative photography">
-        <img src="images/sw6.jpg" alt="Creative photography">
-        <img src="images/sw7.jpg" alt="Creative photography">
-        <img src="images/tok 2.jpg" alt="Creative photography">
-        <img src="images/tok 3.jpg" alt="Creative photography">
-        <img src="images/tok 4.jpg" alt="Creative photography">
-        <img src="images/tok 5.jpg" alt="Creative photography">
-        <img src="images/tok 6.jpg" alt="Creative photography">
-        <img src="images/tok 7.jpg" alt="Creative photography">
-        <img src="images/tokai 1.jpg" alt="Creative photography">
-        <img src="images/tokai 2.jpg" alt="Creative photography">
-        <img src="images/tokai 3.jpg" alt="Creative photography">
-        <img src="images/tokai 4.jpg" alt="Creative photography">
-        <img src="images/tokai 5.jpg" alt="Creative photography">
-         <img src="images/tokai 6.jpg" alt="Creative photography">
-         <img src="images/vadar 1.jpg" alt="Creative photography">
-         <img src="images/vadar 2.jpg" alt="Creative photography">
-         <img src="images/vadar 3.jpg" alt="Creative photography">
-  
-      
-
-      <!-- Copy a line above for each additional image -->
-      <!-- Replace the filename and alt text with your own -->
+      <img src="images/bm5.jpg" alt="Creative photography">
+      <img src="images/bm6.jpg" alt="Creative photography">
+      <img src="images/bridge.jpg" alt="Creative photography">
+      <img src="images/ch2.jpg" alt="Creative photography">
+      <img src="images/ch3.jpg" alt="Creative photography">
+      <img src="images/ch4.jpg" alt="Creative photography">
+      <img src="images/ch5.jpg" alt="Creative photography">
+      <img src="images/ch6.jpg" alt="Creative photography">
+      <img src="images/chess1.jpg" alt="Creative photography">
+      <img src="images/ct1.jpg" alt="Creative photography">
+      <img src="images/ct2.jpg" alt="Creative photography">
+      <img src="images/ct3.jpg" alt="Creative photography">
+      <img src="images/ct4.jpg" alt="Creative photography">
+      <img src="images/dime%201.jpg" alt="Creative photography">
+      <img src="images/dime%202.jpg" alt="Creative photography">
+      <img src="images/dipinto%201.jpg" alt="Creative photography">
+      <img src="images/dipinto%202.jpg" alt="Creative photography">
+      <img src="images/dipinot%203.jpg" alt="Creative photography">
+      <img src="images/dipinto%204.jpg" alt="Creative photography">
+      <img src="images/dollar%20bill.jpg" alt="Creative photography">
+      <img src="images/dpt%201.jpg" alt="Creative photography">
+      <img src="images/dpt%202.jpg" alt="Creative photography">
+      <img src="images/dpt%203.jpg" alt="Creative photography">
+      <img src="images/dpt%204.jpg" alt="Creative photography">
+      <img src="images/dpt%205.jpg" alt="Creative photography">
+      <img src="images/dpt%206.jpg" alt="Creative photography">
+      <img src="images/DPT.jpg" alt="Creative photography">
+      <img src="images/ewok.jpg" alt="Creative photography">
+      <img src="images/frodo.jpg" alt="Creative photography">
+      <img src="images/g1.jpg" alt="Creative photography">
+      <img src="images/g2.jpg" alt="Creative photography">
+      <img src="images/g3.jpg" alt="Creative photography">
+      <img src="images/g4.jpg" alt="Creative photography">
+      <img src="images/gizmo.jpg" alt="Macro photography">
+      <img src="images/l1.jpg" alt="Creative photography">
+      <img src="images/l2.jpg" alt="Creative photography">
+      <img src="images/l3.jpg" alt="Creative photography">
+      <img src="images/l4.jpg" alt="Creative photography">
+      <img src="images/muff%201.jpg" alt="Creative photography">
+      <img src="images/muff%202.jpg" alt="Creative photography">
+      <img src="images/muff%203.jpg" alt="Creative photography">
+      <img src="images/muff%204.jpg" alt="Creative photography">
+      <img src="images/orange.jpg" alt="Creative photography">
+      <img src="images/photo%201.jpg" alt="Creative photography">
+      <img src="images/photo%202.jpg" alt="Creative photography">
+      <img src="images/photo%203.jpg" alt="Creative photography">
+      <img src="images/photo%204.jpg" alt="Creative photography">
+      <img src="images/photo%205.jpg" alt="Creative photography">
+      <img src="images/ray%20ban.jpg" alt="Creative photography">
+      <img src="images/ray2.jpg" alt="Creative photography">
+      <img src="images/sr1.jpg" alt="Creative photography">
+      <img src="images/sr2.jpg" alt="Creative photography">
+      <img src="images/sr3.jpg" alt="Creative photography">
+      <img src="images/sr4.jpg" alt="Creative photography">
+      <img src="images/sr5.jpg" alt="Creative photography">
+      <img src="images/sr6.jpg" alt="Creative photography">
+      <img src="images/sr7.jpg" alt="Creative photography">
+      <img src="images/sray.jpg" alt="Creative photography">
+      <img src="images/sw1.jpg" alt="Creative photography">
+      <img src="images/sw2.jpg" alt="Creative photography">
+      <img src="images/sw3.jpg" alt="Creative photography">
+      <img src="images/sw4.jpg" alt="Creative photography">
+      <img src="images/sw5.jpg" alt="Creative photography">
+      <img src="images/sw6.jpg" alt="Creative photography">
+      <img src="images/sw7.jpg" alt="Creative photography">
+      <img src="images/tok%202.jpg" alt="Creative photography">
+      <img src="images/tok%203.jpg" alt="Creative photography">
+      <img src="images/tok%204.jpg" alt="Creative photography">
+      <img src="images/tok%205.jpg" alt="Creative photography">
+      <img src="images/tok%206.jpg" alt="Creative photography">
+      <img src="images/tok%207.jpg" alt="Creative photography">
+      <img src="images/tokai%201.jpg" alt="Creative photography">
+      <img src="images/tokai%202.jpg" alt="Creative photography">
+      <img src="images/tokai%203.jpg" alt="Creative photography">
+      <img src="images/tokai%204.jpg" alt="Creative photography">
+      <img src="images/tokai%205.jpg" alt="Creative photography">
+      <img src="images/tokai%206.jpg" alt="Creative photography">
+      <img src="images/vadar%201.jpg" alt="Creative photography">
+      <img src="images/vadar%202.jpg" alt="Creative photography">
+      <img src="images/vadar%203.jpg" alt="Creative photography">
     </div>
-     
-<p class="intro">Ready to talk about your project? <a href="mailto:thingsinphotos@gmail.com?subject=Photography%20enquiry">Message me.</a></p>
 
-  </main>
-      <section id="contact">
-        <div class="contact-panel">
-          <div>
-            <div class="eyebrow">Got something in mind?</div>
-            <h2>Let's photograph it.</h2>
-            <p class="section-intro">
-              Tell me what you make, sell or want photographed.
-              We can discuss your ideas, requirements and budget.
-            </p>
-          </div>
-
-          <a
-            class="button primary"
-            href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry"
-          >
-            Get in touch
-          </a>
-        </div>
-      </section>
-    </div>
+    <p class="intro" style="margin-top: 32px; margin-bottom: 0;">
+      Ready to talk about your project?
+      <a href="mailto:thingsinphotos@gmail.com?subject=Photography%20enquiry">Message me.</a>
+    </p>
   </main>
 
-  <footer class="container">
+  <section id="contact">
+    <div class="contact-panel">
+      <div>
+        <div class="eyebrow">Got something in mind?</div>
+        <h2>Let's photograph it.</h2>
+        <p class="section-intro">
+          Tell me what you make, sell or want photographed.
+          We can discuss your ideas, requirements and budget.
+        </p>
+      </div>
+
+      <a
+        class="button primary"
+        href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <footer>
     <span>© <span id="year"></span> ThingsInPhotos</span>
     <span>Product photography in Sussex and across the UK</span>
     <a href="mailto:thingsinphotos@gmail.com">thingsinphotos@gmail.com</a>
   </footer>
-
 
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button class="close" aria-label="Close image">&times;</button>
@@ -350,6 +482,8 @@
   </div>
 
   <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const images = Array.from(document.querySelectorAll('.gallery img'));
@@ -379,8 +513,14 @@
     });
 
     lightbox.querySelector('.close').addEventListener('click', closeImage);
-    lightbox.querySelector('.prev').addEventListener('click', () => showImage(current - 1));
-    lightbox.querySelector('.next').addEventListener('click', () => showImage(current + 1));
+
+    lightbox.querySelector('.prev').addEventListener('click', () => {
+      showImage(current - 1);
+    });
+
+    lightbox.querySelector('.next').addEventListener('click', () => {
+      showImage(current + 1);
+    });
 
     lightbox.addEventListener('click', event => {
       if (event.target === lightbox) closeImage();
@@ -388,10 +528,12 @@
 
     document.addEventListener('keydown', event => {
       if (!lightbox.classList.contains('open')) return;
+
       if (event.key === 'Escape') closeImage();
       if (event.key === 'ArrowLeft') showImage(current - 1);
       if (event.key === 'ArrowRight') showImage(current + 1);
     });
   </script>
+
 </body>
 </html>

@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ThingsInPhotos | Product & Macro Photography</title>
+  <meta name="description" content="Product, macro and creative photography. A closer look at the details that make ordinary things extraordinary.">
+
+  <style>
+    :root {
+      --background: #111110;
+      --surface: #1b1b19;
+      --text: #f4f1eb;
+      --muted: #aaa69d;
+      --accent: #d9b77b;
+      --border: #34332f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 88%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      min-height: 590px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+      padding: 75px 0;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 24px 0;
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -5px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 20px;
+      border: 1px solid var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #171510;
+    }
+
+    .button:hover {
+      background: var(--text);
+      border-color: var(--text);
+      color: #111;
+    }
+
+    .hero-visual {
+      min-height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 55% 45%, #65543a 0%, #29251e 35%, #181817 72%);
+      border: 1px solid var(--border);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #d9b77b66;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 28px #d9b77b12,
+        0 0 0 58px #d9b77b09;
+    }
+
+    .lens {
+      position: relative;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 9px solid #292825;
+      background:
+        radial-gradient(circle at 35% 30%, #747a77, #222827 24%, #080909 57%, #625440 60%, #171716 70%);
+      box-shadow: 0 20px 50px #0009;
+    }
+
+    .visual-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #e5d5b5;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    section {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    h2 {
+      margin: 14px 0 20px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .section-intro {
+      max-width: 600px;
+      color: var(--muted);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .portfolio-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 70% 30%, #655037 0%, transparent 40%),
+        linear-gradient(145deg, #292825, #151514);
+      border: 1px solid var(--border);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .portfolio-card:nth-child(2) {
+      background:
+        radial-gradient(ellipse at 30% 35%, #515c58 0%, transparent 43%),
+        linear-gradient(145deg, #292b28, #151514);
+    }
+
+    .portfolio-card:nth-child(3) {
+      background:
+        radial-gradient(ellipse at 65% 35%, #65534d 0%, transparent 42%),
+        linear-gradient(145deg, #302724, #151514);
+    }
+
+    .portfolio-card small {
+      color: var(--accent);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .portfolio-card h3 {
+      margin-top: 7px;
+      font-size: 23px;
+    }
+
+    .placeholder-note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+    }
+
+    .about-copy {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .about-copy p + p {
+      margin-top: 18px;
+    }
+
+    .contact-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(30px, 4vw, 43px);
+    }
+
+    footer {
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 750px) {
+      .navigation {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 20px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding: 65px 0;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .portfolio-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .portfolio-card {
+        min-height: 240px;
+      }
+
+      .contact-panel {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navigation">
+      <a class="logo" href="#">THINGS<span>IN</span>PHOTOS</a>
+
+      <nav aria-label="Main navigation">
+        <a href="#work">The Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero" style="border-top: 0;">
+        <div>
+          <div class="eyebrow">Product · Macro · Creative</div>
+
+          <h1>Look closer.<br><span>See more.</span></h1>
+
+          <p class="hero-copy">
+            Small details deserve a big stage. Photography that explores
+            texture, character and the things you might otherwise overlook.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="#work">Explore the work</a>
+            <a class="button" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Abstract camera lens illustration">
+          <div class="lens"></div>
+          <div class="visual-caption">A DIFFERENT PERSPECTIVE</div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="eyebrow">Selected photography</div>
+        <h2>The details make it.</h2>
+
+        <p class="section-intro">
+          From beautifully considered products to unexpected close-ups.
+          A closer look can change the way you see something.
+        </p>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <small>01 / Product</small>
+            <h3>Objects & details</h3>
+          </article>
+
+          <article class="portfolio-card">
+            <small>02 / Macro</small>
+            <h3>A closer look</h3>
+          </article>
+
+          <article class="portfolio-card">
+            <small>03 / Creative</small>
+            <h3>Unexpected angles</h3>
+          </article>
+        </div>
+
+        <p class="placeholder-note">
+          Portfolio categories are placeholders for your own photographs.
+          We'll replace these panels with your actual work next.
+        </p>
+      </section>
+
+      <section id="about">
+        <div class="about-grid">
+          <div>
+            <div class="eyebrow">Behind the lens</div>
+            <h2>Things worth looking at.</h2>
+          </div>
+
+          <div class="about-copy">
+            <p>
+              ThingsInPhotos is about seeing everyday objects differently.
+              Through considered lighting, composition and close-up
+              photography, the small stuff becomes the main event.
+            </p>
+
+            <p>
+              Whether it's a product, a fascinating texture or something
+              with a bit of personality, the aim is to create images that
+              make people stop and look twice.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-panel">
+          <div>
+            <div class="eyebrow">Got something in mind?</div>
+            <h2>Let's make it stand out.</h2>
+            <p class="section-intro">
+              Have a product or an idea you'd like photographed?
+              Get in touch.
+            </p>
+          </div>
+
+          <a
+            class="button primary"
+            href="https://www.instagram.com/thingsinphotos/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Find me on Instagram
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container">
+    <span>© <span id="year"></span> ThingsInPhotos</span>
+    <span>Product, macro & creative photography</span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

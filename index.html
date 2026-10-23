@@ -5,10 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
-<title>Product & Commerical Photography in Sussex | ThingsInPhotos</title>
-<meta name="description" content="Product and commeerical photography in Sussex for businesses, makers and independent brands. Showcase your products with detailed images, with local shoots or delivery by post.">
-
+  <title>Product Photography in Sussex | ThingsInPhotos</title>
+  <meta name="description" content="Product and commercial photography in Sussex for businesses, makers and independent brands. Showcase your products with detailed images, with local shoots or delivery by post.">
 
   <style>
     :root {
@@ -46,6 +44,8 @@
       width: min(1160px, 88%);
       margin: 0 auto;
     }
+
+    /* Header and navigation */
 
     header {
       padding: 22px 0;
@@ -89,9 +89,22 @@
       color: var(--accent);
     }
 
+    /* Homepage introduction and hero image */
+
     .intro {
       padding: 76px 0 84px;
       border-top: 0;
+    }
+
+    .intro-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .intro-content {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -105,7 +118,7 @@
     h1 {
       max-width: 900px;
       margin: 20px 0 24px;
-      font-size: clamp(38px, 5.5vw, 70px);
+      font-size: clamp(38px, 4.5vw, 64px);
       line-height: 1.06;
       letter-spacing: -3px;
     }
@@ -149,6 +162,23 @@
       color: #111;
     }
 
+    .intro-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .intro-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* General sections */
+
     section {
       padding: 82px 0;
       border-top: 1px solid var(--border);
@@ -166,9 +196,21 @@
       color: var(--muted);
     }
 
+    .section-intro a {
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .section-intro a:hover {
+      color: var(--accent);
+    }
+
+    /* Portfolio gallery */
+
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-top: 42px;
     }
@@ -186,6 +228,7 @@
         linear-gradient(145deg, #292825, #151514);
       border: 1px solid var(--border);
       transition: border-color 0.25s, transform 0.25s;
+      cursor: pointer;
     }
 
     .portfolio-card:hover {
@@ -205,23 +248,40 @@
         linear-gradient(145deg, #302724, #151514);
     }
 
+    .portfolio-card img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      transition: opacity 0.2s;
+    }
+
+    .portfolio-card:hover img {
+      opacity: 0.8;
+    }
+
     .portfolio-card small {
+      position: relative;
+      z-index: 1;
       color: var(--accent);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
+      text-shadow: 0 1px 5px #000;
     }
 
     .portfolio-card h3 {
+      position: relative;
+      z-index: 1;
       margin-top: 7px;
       font-size: 23px;
+      text-shadow: 0 1px 5px #000;
     }
 
-    .placeholder-note {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    /* About and services */
 
     .about-grid {
       display: grid;
@@ -252,6 +312,8 @@
       color: var(--text);
     }
 
+    /* Contact panel */
+
     .contact-panel {
       display: flex;
       justify-content: space-between;
@@ -267,6 +329,12 @@
       font-size: clamp(30px, 4vw, 43px);
     }
 
+    .contact-panel .section-intro {
+      max-width: 600px;
+    }
+
+    /* Footer */
+
     footer {
       padding: 28px 0;
       display: flex;
@@ -275,6 +343,96 @@
       flex-wrap: wrap;
       color: var(--muted);
       font-size: 12px;
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Image lightbox */
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.94);
+      align-items: center;
+      justify-content: center;
+      padding: 60px 70px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox button {
+      position: absolute;
+      border: 0;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 36px;
+      padding: 10px;
+      line-height: 1;
+    }
+
+    .lightbox button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .lightbox-close {
+      top: 12px;
+      right: 20px;
+    }
+
+    .lightbox-prev {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-next {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 950px) {
+      .intro-layout {
+        grid-template-columns: 1fr 0.85fr;
+        gap: 32px;
+      }
+
+      h1 {
+        font-size: clamp(36px, 5vw, 52px);
+        letter-spacing: -2px;
+      }
+
+      .portfolio-card {
+        min-height: 250px;
+      }
+
+      .about-grid {
+        gap: 36px;
+      }
     }
 
     @media (max-width: 750px) {
@@ -293,6 +451,15 @@
         padding: 56px 0 64px;
       }
 
+      .intro-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .intro-image {
+        aspect-ratio: 4 / 3;
+      }
+
       h1 {
         letter-spacing: -2px;
       }
@@ -308,120 +475,38 @@
       }
 
       .portfolio-card {
-        min-height: 240px;
+        min-height: 260px;
       }
 
       .contact-panel {
         padding: 25px;
+      }
     }
-    .portfolio-card img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
 
-.portfolio-card small,
-.portfolio-card h3 {
-  position: relative;
-  z-index: 1;
-}
+    @media (max-width: 600px) {
+      .lightbox {
+        padding: 50px 42px;
+      }
 
-.portfolio-card img + small {
-  text-shadow: 0 1px 5px #000;
-}
+      .lightbox button {
+        font-size: 28px;
+      }
 
-.portfolio-card h3 {
-  text-shadow: 0 1px 5px #000;
-}
+      .lightbox-prev {
+        left: 2px;
+      }
+
+      .lightbox-next {
+        right: 2px;
+      }
     }
-    
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.94);
-  align-items: center;
-  justify-content: center;
-  padding: 60px 70px;
-}
-
-.lightbox.open {
-  display: flex;
-}
-
-.lightbox img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-.lightbox button {
-  position: absolute;
-  border: 0;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  font-size: 36px;
-  padding: 10px;
-  line-height: 1;
-}
-
-.lightbox-close {
-  top: 12px;
-  right: 20px;
-}
-
-.lightbox-prev {
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-next {
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 600px) {
-  .lightbox {
-    padding: 50px 42px;
-  }
-
-  .lightbox button {
-    font-size: 28px;
-  }
-
-  .lightbox-prev {
-    left: 2px;
-  }
-
-  .lightbox-next {
-    right: 2px;
-  }
-}
-
-/* Bold and underline links within page content */
-main a {
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
   </style>
 </head>
 
 <body>
   <header>
     <div class="container navigation">
-      <a class="logo" href="#">THINGS<span>IN</span>PHOTOS</a>
+      <a class="logo" href="/">THINGS<span>IN</span>PHOTOS</a>
 
       <nav aria-label="Main navigation">
         <a href="#work">Portfolio</a>
@@ -434,26 +519,40 @@ main a {
 
   <main>
     <div class="container">
+
+      <!-- Homepage introduction -->
       <section class="intro">
-        <div class="eyebrow">Product photography · Sussex · Studio & Location</div>
+        <div class="intro-layout">
 
-        <h1>Photos of things that are mine.<br>
-          <span>Hire me to take photos of things that are yours.</span>
-        </h1>
+          <div class="intro-content">
+            <div class="eyebrow">Product photography · Sussex · Studio &amp; Location</div>
 
-        <p class="intro-copy">
-          I photograph things. Working with businesses, independent brands and makers across Sussex, I can photograph your products locally or you can send them to me by post.
-        </p>
+            <h1>
+              Photos of things that are mine.<br>
+              <span>Hire me to take photos of things that are yours.</span>
+            </h1>
 
-        <div class="buttons">
-          <a class="button primary" href="#work">View the photography</a>
-          <a class="button" href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry">Discuss a project</a>
+            <p class="intro-copy">
+              I photograph things. Working with businesses, independent brands and makers across Sussex, I can photograph your products locally or you can send them to me by post.
+            </p>
+
+            <div class="buttons">
+              <a class="button primary" href="#work">View the photography</a>
+              <a class="button" href="mailto:thingsinphotos@gmail.com?subject=Product%20photography%20enquiry">Discuss a project</a>
+            </div>
+          </div>
+
+          <div class="intro-image">
+            <img
+              src="images/ML3P-MOD Trio.jpg"
+              alt="Product photograph of the ML3P-MOD Trio"
+            >
+          </div>
+
         </div>
-         <article class="portfolio-card">
-            <img src="images/ML3P-MOD Trio.jpg" alt="marco photography">
-                               </article>
       </section>
 
+      <!-- Selected portfolio -->
       <section id="work">
         <div class="eyebrow">Selected photography</div>
         <h2>The details make it.</h2>
@@ -463,57 +562,59 @@ main a {
         </p>
 
         <div class="portfolio-grid">
+
           <article class="portfolio-card">
-            <img src="images/dpt 4.jpg" alt="product photography">
+            <img src="images/dpt 4.jpg" alt="Product photograph of a guitar">
             <small>01 / Product</small>
-                     </article>
+          </article>
 
           <article class="portfolio-card">
-            <img src="images/gizmo.jpg" alt="marco photography">
+            <img src="images/gizmo.jpg" alt="Macro product photograph of music equipment">
             <small>02 / Macro</small>
-                    </article>
+          </article>
 
           <article class="portfolio-card">
-            <img src="images/bf2.jpg" alt="creative photography">
+            <img src="images/bf2.jpg" alt="Creative product photograph">
             <small>03 / Creative</small>
-                  </article>
-        
-               <article class="portfolio-card">
-            <img src="images/JD2.jpg" alt="product photography">
+          </article>
+
+          <article class="portfolio-card">
+            <img src="images/JD2.jpg" alt="Detailed product photograph">
             <small>04 / Luxury</small>
-                </article>
+          </article>
 
           <article class="portfolio-card">
-            <img src="images/dollar bill.jpg" alt="marco photography">
+            <img src="images/dollar bill.jpg" alt="Artistic close-up photograph of a dollar bill">
             <small>05 / Artistic</small>
-                     </article>
+          </article>
 
           <article class="portfolio-card">
-            <img src="images/DPTII YELLOW on floor.jpg" alt="creative photography">
+            <img src="images/DPTII YELLOW on floor.jpg" alt="Product photograph of a yellow electric guitar">
             <small>06 / Advertorial</small>
-                      </article>
-          
-          <article class="portfolio-card">
-            <img src="images/so1.jpg" alt="product photography">
-            <small>04 / Macro</small>
           </article>
 
           <article class="portfolio-card">
-            <img src="images/l3.jpg" alt="marco photography">
-            <small>05 / eCommerce</small>
-                      </article>
+            <img src="images/so1.jpg" alt="Macro product photograph">
+            <small>07 / Macro</small>
+          </article>
 
           <article class="portfolio-card">
-            <img src="images/peg pool.jpg" alt="creative photography">
-            <small>06 / Artistic</small>
-        
+            <img src="images/l3.jpg" alt="Product photograph for an online shop">
+            <small>08 / E-commerce</small>
           </article>
+
+          <article class="portfolio-card">
+            <img src="images/peg pool.jpg" alt="Creative artistic product photograph">
+            <small>09 / Artistic</small>
+          </article>
+
         </div>
+      </section>
 
-            </section>
-
+      <!-- Services -->
       <section id="about">
         <div class="about-grid">
+
           <div>
             <div class="eyebrow">What I do</div>
             <h2>Good products deserve good photos.</h2>
@@ -521,36 +622,31 @@ main a {
 
           <div class="about-copy">
             <p>
-              Whether you're selling online, launching a new product
-              or building your brand, good photography helps people
-              understand what makes your product worth a closer look.
+              Whether you're selling online, launching a new product or building your brand, good photography helps people understand what makes your product worth a closer look.
             </p>
 
             <p>
-              I create considered product and macro photography, from
-              clean, detailed shots to more creative images that bring
-              out a product's personality. The aim is simple: make
-              people stop scrolling and take notice.
+              I create product and macro photography, from clean, detailed shots to more creative images that bring out a product's personality. The aim is simple: make people stop scrolling and take notice.
             </p>
 
             <div class="service-note">
               <strong>Based in Sussex. Open to projects further afield.</strong>
-              Local businesses can arrange a shoot in Sussex. If you're
-              elsewhere in the UK, get in touch about posting your
-              products to me for photography.
+              Local businesses can arrange a shoot in Sussex. If you're elsewhere in the UK, get in touch about posting your products to me for photography.
             </div>
           </div>
+
         </div>
       </section>
 
+      <!-- Contact -->
       <section id="contact">
         <div class="contact-panel">
+
           <div>
             <div class="eyebrow">Got something in mind?</div>
             <h2>Let's photograph it.</h2>
             <p class="section-intro">
-              Tell me what you make, sell or want photographed.
-              We can discuss your ideas, requirements and budget.
+              Tell me what you make, sell or want photographed. We can discuss your ideas, requirements and budget.
             </p>
           </div>
 
@@ -560,82 +656,92 @@ main a {
           >
             Get in touch
           </a>
+
         </div>
       </section>
+
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="container">
     <span>© <span id="year"></span> ThingsInPhotos</span>
     <span>Product photography in Sussex and across the UK</span>
     <a href="mailto:thingsinphotos@gmail.com">thingsinphotos@gmail.com</a>
   </footer>
 
+  <!-- Full-size portfolio image viewer -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close image">&times;</button>
+    <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <img id="lightbox-image" src="" alt="">
+    <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+  </div>
+
   <script>
+    // Automatically update the copyright year.
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    // The lightbox applies to the nine portfolio images only.
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+
+    const portfolioImages = Array.from(
+      document.querySelectorAll(".portfolio-card img")
+    );
+
+    let currentImage = 0;
+
+    function showImage(index) {
+      currentImage =
+        (index + portfolioImages.length) % portfolioImages.length;
+
+      lightboxImage.src = portfolioImages[currentImage].src;
+      lightboxImage.alt = portfolioImages[currentImage].alt;
+    }
+
+    function openLightbox(index) {
+      showImage(index);
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    portfolioImages.forEach((img, index) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => openLightbox(index));
+    });
+
+    lightbox.querySelector(".lightbox-close")
+      .addEventListener("click", closeLightbox);
+
+    lightbox.querySelector(".lightbox-prev")
+      .addEventListener("click", () => showImage(currentImage - 1));
+
+    lightbox.querySelector(".lightbox-next")
+      .addEventListener("click", () => showImage(currentImage + 1));
+
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!lightbox.classList.contains("open")) return;
+
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showImage(currentImage - 1);
+      if (event.key === "ArrowRight") showImage(currentImage + 1);
+    });
   </script>
-
-  
-<div id="lightbox" class="lightbox" aria-hidden="true">
-  <button class="lightbox-close" aria-label="Close image">&times;</button>
-  <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
-  <img id="lightbox-image" src="" alt="">
-  <button class="lightbox-next" aria-label="Next image">&#10095;</button>
-</div>
-
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImage = document.getElementById('lightbox-image');
-  const portfolioImages = Array.from(
-    document.querySelectorAll('.portfolio-card img')
-  );
-  let currentImage = 0;
-
-  function showImage(index) {
-    currentImage = (index + portfolioImages.length) % portfolioImages.length;
-    lightboxImage.src = portfolioImages[currentImage].src;
-    lightboxImage.alt = portfolioImages[currentImage].alt;
-  }
-
-  function openLightbox(index) {
-    showImage(index);
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  portfolioImages.forEach((img, index) => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => openLightbox(index));
-  });
-
-  lightbox.querySelector('.lightbox-close')
-    .addEventListener('click', closeLightbox);
-
-  lightbox.querySelector('.lightbox-prev')
-    .addEventListener('click', () => showImage(currentImage - 1));
-
-  lightbox.querySelector('.lightbox-next')
-    .addEventListener('click', () => showImage(currentImage + 1));
-
-  lightbox.addEventListener('click', event => {
-    if (event.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener('keydown', event => {
-    if (!lightbox.classList.contains('open')) return;
-    if (event.key === 'Escape') closeLightbox();
-    if (event.key === 'ArrowLeft') showImage(currentImage - 1);
-    if (event.key === 'ArrowRight') showImage(currentImage + 1);
-  });
-</script>
 
 </body>
 </html>

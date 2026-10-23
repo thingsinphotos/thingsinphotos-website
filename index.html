@@ -57,7 +57,6 @@
     }
 
     /* Header and navigation */
-
     header {
       padding: 22px 0;
       border-bottom: 1px solid var(--border);
@@ -101,7 +100,6 @@
     }
 
     /* Homepage introduction and hero image */
-
     .intro {
       padding: 76px 0 84px;
       border-top: 0;
@@ -191,7 +189,6 @@
     }
 
     /* General sections */
-
     section {
       padding: 82px 0;
       border-top: 1px solid var(--border);
@@ -220,7 +217,6 @@
     }
 
     /* Portfolio gallery */
-
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -228,13 +224,17 @@
       margin-top: 42px;
     }
 
+    /*
+      Each portfolio card is a bordered box.
+      The image and label are separate rows, not overlays.
+    */
     .portfolio-card {
       min-width: 0;
-      min-height: 300px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
+      justify-content: flex-start;
+      padding: 0;
       position: relative;
       overflow: hidden;
       background:
@@ -263,40 +263,42 @@
     }
 
     .portfolio-card img {
-      position: absolute;
-      inset: 0;
+      position: static;
+      inset: auto;
       display: block;
       width: 100%;
-      height: 100%;
+      height: 220px;
+      flex: 0 0 220px;
       object-fit: cover;
-      z-index: 0;
+      z-index: auto;
       transition: opacity 0.2s;
     }
 
     .portfolio-card:hover img {
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .portfolio-card small {
-      position: relative;
-      z-index: 1;
+      position: static;
+      display: block;
+      margin: 15px 18px 0;
       color: var(--accent);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 1px 5px #000;
+      text-shadow: none;
+      z-index: auto;
     }
 
     .portfolio-card h3 {
-      position: relative;
-      z-index: 1;
-      margin-top: 7px;
+      position: static;
+      margin: 7px 18px 20px;
       font-size: 23px;
-      text-shadow: 0 1px 5px #000;
+      text-shadow: none;
+      z-index: auto;
     }
 
     /* About and services */
-
     .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -328,7 +330,6 @@
     }
 
     /* Contact panel */
-
     .contact-panel {
       display: flex;
       justify-content: space-between;
@@ -353,7 +354,6 @@
     }
 
     /* Footer */
-
     footer {
       padding: 28px 0;
       display: flex;
@@ -373,7 +373,6 @@
     }
 
     /* Image lightbox */
-
     .lightbox {
       display: none;
       position: fixed;
@@ -433,7 +432,6 @@
     }
 
     /* Responsive layout */
-
     @media (max-width: 950px) {
       .intro-layout {
         grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
@@ -445,8 +443,9 @@
         letter-spacing: -2px;
       }
 
-      .portfolio-card {
-        min-height: 250px;
+      .portfolio-card img {
+        height: 190px;
+        flex-basis: 190px;
       }
 
       .about-grid {
@@ -547,17 +546,26 @@
         width: 100%;
         min-width: 0;
         min-height: 0;
-        aspect-ratio: 4 / 3;
-        padding: 14px;
+        padding: 0;
       }
 
-      .portfolio-card h3 {
-        font-size: 18px;
+      .portfolio-card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        flex: 0 0 auto;
+        object-fit: contain;
       }
 
       .portfolio-card small {
+        margin: 12px 12px 0;
         font-size: 9px;
         letter-spacing: 1.5px;
+      }
+
+      .portfolio-card h3 {
+        margin: 6px 12px 14px;
+        font-size: 18px;
       }
 
       .about-grid {
@@ -637,12 +645,17 @@
         gap: 16px;
       }
 
-      .portfolio-card {
+      .portfolio-card img {
         aspect-ratio: 4 / 3;
-        padding: 20px;
+        object-fit: contain;
+      }
+
+      .portfolio-card small {
+        margin: 14px 16px 0;
       }
 
       .portfolio-card h3 {
+        margin: 7px 16px 18px;
         font-size: 21px;
       }
 
@@ -739,7 +752,6 @@
         </p>
 
         <div class="portfolio-grid">
-
           <article class="portfolio-card">
             <img src="images/dpt 4.jpg" alt="Product photograph of a guitar">
             <small>01 / Product</small>
@@ -784,7 +796,6 @@
             <img src="images/peg pool.jpg" alt="Creative artistic product photograph">
             <small>09 / Artistic</small>
           </article>
-
         </div>
       </section>
 
@@ -818,7 +829,6 @@
       <!-- Contact -->
       <section id="contact">
         <div class="contact-panel">
-
           <div>
             <div class="eyebrow">Got something in mind?</div>
             <h2>Let's photograph it.</h2>
@@ -833,7 +843,6 @@
           >
             Get in touch
           </a>
-
         </div>
       </section>
 
@@ -913,12 +922,10 @@
 
     document.addEventListener("keydown", event => {
       if (!lightbox.classList.contains("open")) return;
-
       if (event.key === "Escape") closeLightbox();
       if (event.key === "ArrowLeft") showImage(currentImage - 1);
       if (event.key === "ArrowRight") showImage(currentImage + 1);
     });
   </script>
-
 </body>
 </html>

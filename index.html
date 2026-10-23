@@ -690,6 +690,118 @@
         right: 0;
       }
     }
+    /* Portfolio cards: show the complete image and keep everything aligned */
+.portfolio-grid {
+  align-items: start;
+}
+
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: start;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* Show the entire photograph without cropping */
+.portfolio-card img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  flex: none;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* Labels sit directly underneath their own images */
+.portfolio-card small {
+  position: static;
+  display: block;
+  width: auto;
+  margin: 14px 16px 16px;
+  padding: 0;
+  text-align: left;
+  color: var(--accent);
+  text-shadow: none;
+  line-height: 1.5;
+}
+
+.portfolio-card h3 {
+  position: static;
+  margin: 0 16px 16px;
+  text-shadow: none;
+}
+
+/* Keep the image, background and label together on mobile */
+@media (max-width: 750px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 14px;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    justify-self: stretch;
+  }
+
+  .portfolio-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .portfolio-card small {
+    margin: 12px 12px 14px;
+    text-align: left;
+  }
+
+  .portfolio-card h3 {
+    margin: 0 12px 14px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portfolio-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .portfolio-card small {
+    margin: 12px 16px 16px;
+  }
+
+  .portfolio-card h3 {
+    margin: 0 16px 16px;
+    font-size: 21px;
+  }
+}
   </style>
 </head>
 

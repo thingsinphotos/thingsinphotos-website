@@ -802,6 +802,106 @@
     font-size: 21px;
   }
 }
+    /* Latest photos carousel */
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.carousel-header h2 {
+  margin-bottom: 0;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.carousel-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.carousel-slide {
+  flex: 0 0 calc(33.333% - 12px);
+  scroll-snap-align: start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.25s;
+}
+
+.carousel-slide:hover {
+  border-color: var(--accent);
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+
+.carousel-slide:hover img {
+  opacity: 0.85;
+}
+
+.carousel-slide small {
+  display: block;
+  margin: 14px 16px;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 950px) {
+  .carousel-slide {
+    flex: 0 0 calc(50% - 9px);
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel-slide {
+    flex: 0 0 85%;
+  }
+
+  .carousel-slide img {
+    height: 220px;
+  }
+}
   </style>
 </head>
 
@@ -911,6 +1011,48 @@
         </div>
       </section>
 
+      <!-- Latest photos carousel -->
+<section id="latest">
+  <div class="carousel-header">
+    <div>
+      <div class="eyebrow">Recent work</div>
+      <h2>Latest photos.</h2>
+    </div>
+
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous photos">❮</button>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next photos">❯</button>
+    </div>
+  </div>
+
+  <div class="carousel-track" id="carousel-track">
+    <article class="carousel-slide">
+      <img src="images/latest-1.jpg" alt="Latest product photograph 1">
+      <small>01 / New Addition</small>
+    </article>
+
+    <article class="carousel-slide">
+      <img src="images/latest-2.jpg" alt="Latest product photograph 2">
+      <small>02 / Studio Shoot</small>
+    </article>
+
+    <article class="carousel-slide">
+      <img src="images/latest-3.jpg" alt="Latest product photograph 3">
+      <small>03 / Detail Shot</small>
+    </article>
+
+    <article class="carousel-slide">
+      <img src="images/latest-4.jpg" alt="Latest product photograph 4">
+      <small>04 / Location</small>
+    </article>
+
+    <article class="carousel-slide">
+      <img src="images/latest-5.jpg" alt="Latest product photograph 5">
+      <small>05 / Macro</small>
+    </article>
+  </div>
+</section>
+
       <!-- Services -->
       <section id="about">
         <div class="about-grid">
@@ -976,68 +1118,86 @@
     <button class="lightbox-next" aria-label="Next image">&#10095;</button>
   </div>
 
-  <script>
-    // Automatically update the copyright year.
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+<script>
+  // Automatically update the copyright year.
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
 
-    // The lightbox applies to the nine portfolio images only.
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightbox-image");
+  // Carousel controls
+  const track = document.getElementById("carousel-track");
+  const prevBtn = document.getElementById("carousel-prev");
+  const nextBtn = document.getElementById("carousel-next");
 
-    const portfolioImages = Array.from(
-      document.querySelectorAll(".portfolio-card img")
-    );
+  function getScrollAmount() {
+    const slide = track.querySelector(".carousel-slide");
+    return slide ? slide.offsetWidth + 18 : 320;
+  }
 
-    let currentImage = 0;
+  prevBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+  });
 
-    function showImage(index) {
-      currentImage =
-        (index + portfolioImages.length) % portfolioImages.length;
+  nextBtn.addEventListener("click", () => {
+    track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+  });
 
-      lightboxImage.src = portfolioImages[currentImage].src;
-      lightboxImage.alt = portfolioImages[currentImage].alt;
+  // Lightbox (includes both portfolio and latest carousel images)
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+
+  const galleryImages = Array.from(
+    document.querySelectorAll(".portfolio-card img, .carousel-slide img")
+  );
+
+  let currentImage = 0;
+
+  function showImage(index) {
+    currentImage =
+      (index + galleryImages.length) % galleryImages.length;
+
+    lightboxImage.src = galleryImages[currentImage].src;
+    lightboxImage.alt = galleryImages[currentImage].alt;
+  }
+
+  function openLightbox(index) {
+    showImage(index);
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  galleryImages.forEach((img, index) => {
+    img.style.cursor = "zoom-in";
+    img.addEventListener("click", () => openLightbox(index));
+  });
+
+  lightbox.querySelector(".lightbox-close")
+    .addEventListener("click", closeLightbox);
+
+  lightbox.querySelector(".lightbox-prev")
+    .addEventListener("click", () => showImage(currentImage - 1));
+
+  lightbox.querySelector(".lightbox-next")
+    .addEventListener("click", () => showImage(currentImage + 1));
+
+  lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) {
+      closeLightbox();
     }
+  });
 
-    function openLightbox(index) {
-      showImage(index);
-      lightbox.classList.add("open");
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove("open");
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-
-    portfolioImages.forEach((img, index) => {
-      img.style.cursor = "zoom-in";
-      img.addEventListener("click", () => openLightbox(index));
-    });
-
-    lightbox.querySelector(".lightbox-close")
-      .addEventListener("click", closeLightbox);
-
-    lightbox.querySelector(".lightbox-prev")
-      .addEventListener("click", () => showImage(currentImage - 1));
-
-    lightbox.querySelector(".lightbox-next")
-      .addEventListener("click", () => showImage(currentImage + 1));
-
-    lightbox.addEventListener("click", event => {
-      if (event.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener("keydown", event => {
-      if (!lightbox.classList.contains("open")) return;
-      if (event.key === "Escape") closeLightbox();
-      if (event.key === "ArrowLeft") showImage(currentImage - 1);
-      if (event.key === "ArrowRight") showImage(currentImage + 1);
-    });
-  </script>
+  document.addEventListener("keydown", event => {
+    if (!lightbox.classList.contains("open")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") showImage(currentImage - 1);
+    if (event.key === "ArrowRight") showImage(currentImage + 1);
+  });
+</script>
 </body>
 </html>

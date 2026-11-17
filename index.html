@@ -802,7 +802,7 @@
     font-size: 21px;
   }
 }
-    /* Latest photos carousel */
+   /* Latest photos carousel */
 .carousel-header {
   display: flex;
   justify-content: space-between;
@@ -842,6 +842,7 @@
 
 .carousel-track {
   display: flex;
+  align-items: flex-start;
   gap: 18px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -855,9 +856,11 @@
 
 .carousel-slide {
   flex: 0 0 calc(33.333% - 12px);
+  min-width: 0;
   scroll-snap-align: start;
   background: var(--surface);
   border: 1px solid var(--border);
+  overflow: hidden;
   transition: border-color 0.25s;
 }
 
@@ -868,8 +871,8 @@
 .carousel-slide img {
   display: block;
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   cursor: zoom-in;
   transition: opacity 0.2s;
 }
@@ -885,6 +888,7 @@
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  line-height: 1.5;
 }
 
 @media (max-width: 950px) {
@@ -898,8 +902,8 @@
     flex: 0 0 85%;
   }
 
-  .carousel-slide img {
-    height: 220px;
+  .carousel-slide small {
+    margin: 12px 14px;
   }
 }
   </style>
